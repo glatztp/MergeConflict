@@ -6,6 +6,11 @@ interface SearchViewProps {
   error: string;
 }
 
+interface SavedUser {
+  username: string;
+  savedAt: number;
+}
+
 export const SearchView: React.FC<SearchViewProps> = ({
   onStartBattle,
   isLoading,
@@ -13,9 +18,48 @@ export const SearchView: React.FC<SearchViewProps> = ({
 }) => {
   const [player1, setPlayer1] = useState("");
   const [player2, setPlayer2] = useState("");
+  const [savedUsers, setSavedUsers] = useState<SavedUser[]>(() => {
+    try {
+      const saved = localStorage.getItem("gitbattle-saved-users");
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      console.error("Error loading saved users:", e);
+      return [];
+    }
+  });
+  const [showSaved, setShowSaved] = useState(false);
+
+  const saveUser = (username: string) => {
+    if (!username.trim()) return;
+
+    const newSavedUsers = savedUsers.filter(
+      (u) => u.username !== username.trim()
+    );
+    newSavedUsers.unshift({ username: username.trim(), savedAt: Date.now() });
+
+    const limitedUsers = newSavedUsers.slice(0, 10);
+    setSavedUsers(limitedUsers);
+    localStorage.setItem("gitbattle-saved-users", JSON.stringify(limitedUsers));
+  };
+
+  const removeUser = (username: string) => {
+    const filtered = savedUsers.filter((u) => u.username !== username);
+    setSavedUsers(filtered);
+    localStorage.setItem("gitbattle-saved-users", JSON.stringify(filtered));
+  };
+
+  const selectUser = (username: string, slot: 1 | 2) => {
+    if (slot === 1) {
+      setPlayer1(username);
+    } else {
+      setPlayer2(username);
+    }
+  };
 
   const handleSubmit = () => {
     if (player1.trim() && player2.trim()) {
+      saveUser(player1.trim());
+      saveUser(player2.trim());
       onStartBattle(player1.trim(), player2.trim());
     }
   };
@@ -59,11 +103,22 @@ export const SearchView: React.FC<SearchViewProps> = ({
                 onChange={(e) => setPlayer1(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleSubmit()}
                 placeholder="torvalds"
-                className="w-full bg-gray-900/50 border border-blue-900/30 rounded-xl p-3 pl-12 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-mono text-lg text-white group-hover:border-blue-700/50 shadow-inner"
+                className="w-full bg-gray-900/50 border border-blue-900/30 rounded-xl p-3 pl-12 pr-12 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-mono text-lg text-white group-hover:border-blue-700/50 shadow-inner"
               />
               <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
                 search
               </span>
+              {player1 && (
+                <button
+                  onClick={() => saveUser(player1)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-400 hover:text-blue-300 transition-colors"
+                  title="Save user"
+                >
+                  <span className="material-symbols-outlined text-xl">
+                    bookmark_add
+                  </span>
+                </button>
+              )}
             </div>
           </div>
 
@@ -86,6 +141,17 @@ export const SearchView: React.FC<SearchViewProps> = ({
               <span className="material-symbols-outlined absolute left-4 md:left-auto md:right-4 top-1/2 -translate-y-1/2 text-gray-500">
                 search
               </span>
+              {player2 && (
+                <button
+                  onClick={() => saveUser(player2)}
+                  className="absolute right-3 md:left-3 md:right-auto top-1/2 -translate-y-1/2 text-red-400 hover:text-red-300 transition-colors"
+                  title="Save user"
+                >
+                  <span className="material-symbols-outlined text-xl">
+                    bookmark_add
+                  </span>
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -120,6 +186,67 @@ export const SearchView: React.FC<SearchViewProps> = ({
           </div>
         )}
       </div>
+
+      {/* Saved Users */}
+      {savedUsers.length > 0 && (
+        <div className="mt-8 w-full max-w-4xl">
+          <button
+            onClick={() => setShowSaved(!showSaved)}
+            className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors font-mono text-sm mb-3"
+          >
+            <span className="material-symbols-outlined text-lg">
+              {showSaved ? "expand_less" : "expand_more"}
+            </span>
+            Saved Users ({savedUsers.length})
+          </button>
+
+          {showSaved && (
+            <div className="glass-panel p-4 rounded-xl border border-white/10">
+              <div className="flex flex-wrap gap-2">
+                {savedUsers.map((user) => (
+                  <div
+                    key={user.username}
+                    className="group flex items-center gap-2 bg-gray-900/50 border border-gray-700/50 rounded-lg px-3 py-2 hover:border-blue-500/50 transition-all"
+                  >
+                    <span className="font-mono text-sm text-gray-300">
+                      {user.username}
+                    </span>
+                    <div className="flex gap-1">
+                      <button
+                        onClick={() => selectUser(user.username, 1)}
+                        className="text-blue-400 hover:text-blue-300 transition-colors"
+                        title="Set as Player 1"
+                      >
+                        <span className="material-symbols-outlined text-sm">
+                          arrow_back
+                        </span>
+                      </button>
+                      <button
+                        onClick={() => selectUser(user.username, 2)}
+                        className="text-red-400 hover:text-red-300 transition-colors"
+                        title="Set as Player 2"
+                      >
+                        <span className="material-symbols-outlined text-sm">
+                          arrow_forward
+                        </span>
+                      </button>
+                      <button
+                        onClick={() => removeUser(user.username)}
+                        className="text-gray-500 hover:text-red-400 transition-colors"
+                        title="Remove"
+                      >
+                        <span className="material-symbols-outlined text-sm">
+                          close
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Presets */}
       <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm font-mono text-gray-500">

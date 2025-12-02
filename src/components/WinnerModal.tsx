@@ -8,6 +8,7 @@ interface WinnerModalProps {
 
 export const WinnerModal: React.FC<WinnerModalProps> = ({
   winner,
+  onNewBattle,
 }) => {
   if (!winner) return null;
 
@@ -98,7 +99,14 @@ export const WinnerModal: React.FC<WinnerModalProps> = ({
               </p>
             </div>
           </div>
-         
+
+          <button
+            onClick={onNewBattle}
+            className="bg-linear-to-r from-yellow-400 to-orange-500 text-black font-black px-8 py-4 rounded-xl transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(253,224,71,0.5)] flex items-center gap-2 text-lg mx-auto active:scale-95 hover:shadow-[0_0_50px_rgba(253,224,71,0.7)]"
+          >
+            <span className="material-symbols-outlined">refresh</span>
+            NEW BATTLE
+          </button>
         </div>
       </div>
     </div>
