@@ -22,21 +22,18 @@ export const WinnerModal: React.FC<WinnerModalProps> = ({
         ></div>
       </div>
 
-      <div className="bg-linear-to-b from-gray-900 via-gray-900 to-black border-2 border-yellow-400/30 rounded-3xl p-10 max-w-lg w-full text-center relative overflow-hidden shadow-[0_0_80px_rgba(253,224,71,0.3)] transform scale-100 animate-bounce-in">
+      <div className="bg-linear-to-b from-gray-900 via-gray-900 to-black border-2 border-yellow-400/30 rounded-3xl p-6 sm:p-10 max-w-lg w-full text-center relative overflow-hidden shadow-[0_0_80px_rgba(253,224,71,0.3)] transform scale-100 animate-bounce-in">
         <div className="absolute top-0 left-0 w-full h-3 bg-linear-to-r from-yellow-400 via-orange-400 to-yellow-400 animate-pulse"></div>
 
-        <div className="absolute top-8 left-8 w-20 h-20 border-4 border-yellow-400/20 rounded-full animate-ping"></div>
+        <div className="absolute top-4 sm:top-8 left-4 sm:left-8 w-12 h-12 sm:w-20 sm:h-20 border-4 border-yellow-400/20 rounded-full animate-ping"></div>
         <div
-          className="absolute top-8 right-8 w-20 h-20 border-4 border-yellow-400/20 rounded-full animate-ping"
+          className="absolute top-4 sm:top-8 right-4 sm:right-8 w-12 h-12 sm:w-20 sm:h-20 border-4 border-yellow-400/20 rounded-full animate-ping"
           style={{ animationDelay: "0.5s" }}
         ></div>
 
         <div className="relative z-10">
-          <div className="mb-6 flex flex-col items-center gap-2">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-5xl animate-bounce">🏆</span>
-            </div>
-            <h2 className="text-6xl font-black italic bg-clip-text text-transparent bg-linear-to-r from-yellow-300 via-yellow-400 to-orange-400 uppercase drop-shadow-[0_0_20px_rgba(253,224,71,0.5)] tracking-wide">
+          <div className="mb-4 sm:mb-6 flex flex-col items-center gap-2">           
+            <h2 className="text-4xl sm:text-6xl font-black italic bg-clip-text text-transparent bg-linear-to-r from-yellow-300 via-yellow-400 to-orange-400 uppercase drop-shadow-[0_0_20px_rgba(253,224,71,0.5)] tracking-wide">
               Victory!
             </h2>
             <div className="flex gap-1 mt-2">
@@ -52,7 +49,7 @@ export const WinnerModal: React.FC<WinnerModalProps> = ({
             </div>
           </div>
 
-          <div className="my-8 relative inline-block">
+          <div className="my-6 sm:my-8 relative inline-block">
             <div className="absolute inset-0 bg-yellow-400/30 rounded-full blur-2xl animate-pulse scale-125"></div>
             <div
               className="absolute -inset-4 border-4 border-dashed border-yellow-400/30 rounded-full animate-spin"
@@ -62,16 +59,16 @@ export const WinnerModal: React.FC<WinnerModalProps> = ({
             <img
               src={winner.avatar_url}
               alt={winner.login}
-              className="w-40 h-40 rounded-full border-4 border-yellow-400 shadow-[0_0_60px_rgba(253,224,71,0.5)] relative z-10 animate-float"
+              className="w-28 h-28 sm:w-40 sm:h-40 rounded-full border-4 border-yellow-400 shadow-[0_0_60px_rgba(253,224,71,0.5)] relative z-10 animate-float"
             />
 
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-linear-to-r from-yellow-400 to-orange-500 text-black font-black px-6 py-2 rounded-full text-base whitespace-nowrap border-4 border-gray-900 shadow-lg z-20">
-              ⭐ WINNER ⭐
+            <div className="absolute -bottom-3 sm:-bottom-4 left-1/2 -translate-x-1/2 bg-linear-to-r from-yellow-400 to-orange-500 text-black font-black px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-sm sm:text-base whitespace-nowrap border-2 sm:border-4 border-gray-900 shadow-lg z-20">
+              WINNER
             </div>
           </div>
 
-          <div className="mb-8 space-y-3">
-            <h3 className="text-3xl font-black text-white drop-shadow-lg">
+          <div className="mb-6 sm:mb-8 space-y-2 sm:space-y-3">
+            <h3 className="text-2xl sm:text-3xl font-black text-white drop-shadow-lg">
               {winner.name || winner.login}
             </h3>
             <p className="text-yellow-400 text-sm font-mono tracking-wider">
@@ -92,17 +89,12 @@ export const WinnerModal: React.FC<WinnerModalProps> = ({
                 </span>
               </div>
             </div>
-
-            <div className="inline-block bg-yellow-400/10 border border-yellow-400/30 rounded-lg px-4 py-2 mt-4">
-              <p className="text-gray-300 text-sm font-mono">
-                🎉 Repository successfully merged!
-              </p>
-            </div>
+           
           </div>
 
           <button
             onClick={onNewBattle}
-            className="bg-linear-to-r from-yellow-400 to-orange-500 text-black font-black px-8 py-4 rounded-xl transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(253,224,71,0.5)] flex items-center gap-2 text-lg mx-auto active:scale-95 hover:shadow-[0_0_50px_rgba(253,224,71,0.7)]"
+            className="bg-linear-to-r from-yellow-400 to-orange-500 text-black font-black px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(253,224,71,0.5)] flex items-center gap-2 text-base sm:text-lg mx-auto active:scale-95 hover:shadow-[0_0_50px_rgba(253,224,71,0.7)]"
           >
             <span className="material-symbols-outlined">refresh</span>
             NEW BATTLE

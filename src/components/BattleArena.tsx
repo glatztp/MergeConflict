@@ -30,7 +30,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({
     : "rgba(239,68,68,0.6)";
 
   return (
-    <div className="grow glass-panel rounded-2xl relative overflow-hidden flex items-center justify-center p-8 bg-linear-to-b from-gray-900 via-gray-900/95 to-black border border-white/10 shadow-inner">
+    <div className="grow glass-panel rounded-lg sm:rounded-xl md:rounded-2xl relative overflow-hidden flex items-center justify-center p-2 sm:p-4 md:p-6 lg:p-8 bg-linear-to-b from-gray-900 via-gray-900/95 to-black border border-white/10 shadow-inner min-h-[180px] sm:min-h-[220px] md:min-h-[280px]">
       <div
         className="absolute inset-0 opacity-20 animate-pulse"
         style={{
@@ -42,63 +42,63 @@ export const BattleArena: React.FC<BattleArenaProps> = ({
 
       <div className="absolute inset-0 bg-linear-to-r from-blue-500/5 via-transparent to-red-500/5"></div>
 
-      <div className="absolute top-4 left-4 right-4 flex justify-between items-center opacity-50">
-        <div className="flex gap-1">
-          <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+      <div className="absolute top-1 sm:top-2 md:top-4 left-2 sm:left-3 md:left-4 right-2 sm:right-3 md:right-4 flex justify-between items-center opacity-50">
+        <div className="flex gap-0.5 sm:gap-1">
+          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full animate-pulse"></div>
           <div
-            className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
+            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-400 rounded-full animate-pulse"
             style={{ animationDelay: "0.2s" }}
           ></div>
           <div
-            className="w-2 h-2 bg-blue-300 rounded-full animate-pulse"
+            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-300 rounded-full animate-pulse"
             style={{ animationDelay: "0.4s" }}
           ></div>
         </div>
-        <div className="text-xs font-mono text-gray-600 tracking-wider">
+        <div className="text-[8px] sm:text-[10px] md:text-xs font-mono text-gray-600 tracking-wider hidden xs:block">
           BATTLE_ARENA.SYS
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-0.5 sm:gap-1">
           <div
-            className="w-2 h-2 bg-red-300 rounded-full animate-pulse"
+            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-300 rounded-full animate-pulse"
             style={{ animationDelay: "0.4s" }}
           ></div>
           <div
-            className="w-2 h-2 bg-red-400 rounded-full animate-pulse"
+            className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-400 rounded-full animate-pulse"
             style={{ animationDelay: "0.2s" }}
           ></div>
-          <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-500 rounded-full animate-pulse"></div>
         </div>
       </div>
 
-      <div className="relative z-10 text-center w-full">
-        <div className="min-h-40 flex flex-col items-center justify-center transition-all duration-500">
+      <div className="relative z-10 text-center w-full px-2">
+        <div className="min-h-[120px] sm:min-h-32 md:min-h-40 flex flex-col items-center justify-center transition-all duration-500">
           {currentMove ? (
-            <div className="flex flex-col items-center gap-4 animate-bounce">
+            <div className="flex flex-col items-center gap-1 sm:gap-2 md:gap-3 animate-bounce">
               <div className="relative">
                 <div
-                  className={`absolute inset-0 blur-2xl opacity-60 bg-${attackerColor}-500 rounded-full scale-150`}
+                  className={`absolute inset-0 blur-xl sm:blur-2xl opacity-60 bg-${attackerColor}-500 rounded-full scale-125 sm:scale-150`}
                 ></div>
                 <span
-                  className={`material-symbols-outlined text-6xl text-white drop-shadow-[0_0_20px_${attackerGlow}] relative z-10 animate-pulse`}
+                  className={`material-symbols-outlined text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white drop-shadow-[0_0_20px_${attackerGlow}] relative z-10 animate-pulse`}
                 >
                   {currentMove.icon}
                 </span>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-0.5 sm:space-y-1 md:space-y-2">
                 <span
-                  className={`block text-2xl md:text-3xl font-black uppercase bg-clip-text text-transparent bg-linear-to-r ${attackerGradient} tracking-widest drop-shadow-[0_0_10px_${attackerGlow}]`}
+                  className={`block text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl font-black uppercase bg-clip-text text-transparent bg-linear-to-r ${attackerGradient} tracking-wide sm:tracking-wider md:tracking-widest drop-shadow-[0_0_10px_${attackerGlow}]`}
                 >
                   {currentMove.name}
                 </span>
                 <span
-                  className={`block text-sm font-mono italic ${attackerColorClass}`}
+                  className={`block text-[10px] sm:text-xs md:text-sm font-mono italic ${attackerColorClass}`}
                 >
                   {currentMove.msg}
                 </span>
               </div>
 
-              <div className="flex gap-2 mt-2">
+              <div className="flex gap-1 sm:gap-2 mt-1 sm:mt-2">
                 <div
                   className={`w-12 h-1 bg-${attackerColor}-500 rounded-full animate-pulse`}
                 ></div>
@@ -142,12 +142,13 @@ export const BattleArena: React.FC<BattleArenaProps> = ({
             key={dmg.id}
             className={`absolute text-center font-black damage-popup ${
               dmg.isCrit
-                ? "text-yellow-400 text-6xl z-20 drop-shadow-[0_0_25px_rgba(253,224,71,0.8)] animate-pulse"
-                : "text-red-500 text-4xl z-10 drop-shadow-[0_0_15px_rgba(239,68,68,0.6)]"
+                ? "text-yellow-400 text-3xl sm:text-4xl md:text-5xl lg:text-6xl z-20 drop-shadow-[0_0_25px_rgba(253,224,71,0.8)] animate-pulse"
+                : "text-red-500 text-2xl sm:text-3xl md:text-4xl z-10 drop-shadow-[0_0_15px_rgba(239,68,68,0.6)]"
             }`}
             style={{
-              [dmg.position === "left" ? "left" : "right"]: "20%",
-              top: "40%",
+              [dmg.position === "left" ? "left" : "right"]:
+                window.innerWidth < 640 ? "10%" : "20%",
+              top: window.innerWidth < 640 ? "35%" : "40%",
               textShadow: dmg.isCrit
                 ? "0 0 20px rgba(253,224,71,1), 0 0 40px rgba(253,224,71,0.5)"
                 : "0 0 10px rgba(239,68,68,0.8)",
@@ -155,7 +156,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({
           >
             {dmg.isCrit ? (
               <div className="flex flex-col items-center gap-1">
-                <span className="text-xs text-yellow-300 font-bold tracking-widest">
+                <span className="text-[10px] sm:text-xs text-yellow-300 font-bold tracking-widest">
                   ⚡ CRITICAL HIT ⚡
                 </span>
                 <span>-{dmg.amount}</span>
@@ -167,10 +168,10 @@ export const BattleArena: React.FC<BattleArenaProps> = ({
         ))}
       </div>
 
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        <div className="w-16 h-0.5 bg-linear-to-r from-transparent via-blue-500 to-transparent animate-pulse"></div>
+      <div className="absolute bottom-2 sm:bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2">
+        <div className="w-10 sm:w-12 md:w-16 h-0.5 bg-linear-to-r from-transparent via-blue-500 to-transparent animate-pulse"></div>
         <div
-          className="w-16 h-0.5 bg-linear-to-r from-transparent via-red-500 to-transparent animate-pulse"
+          className="w-10 sm:w-12 md:w-16 h-0.5 bg-linear-to-r from-transparent via-red-500 to-transparent animate-pulse"
           style={{ animationDelay: "0.5s" }}
         ></div>
       </div>

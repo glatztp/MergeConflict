@@ -180,11 +180,11 @@ function App() {
   }, [view, player1, player2, winner, executeTurn]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center selection:bg-blue-500 selection:text-white bg-[#030712] text-white">
+    <div className="min-h-screen min-h-[100dvh] flex flex-col items-center selection:bg-blue-500 selection:text-white bg-[#030712] text-white">
       <div className="grid-bg"></div>
       <div className="fixed top-0 left-0 w-full h-full bg-linear-to-b from-blue-900/10 to-red-900/10 pointer-events-none z-[-1]"></div>
 
-      <main className="w-full max-w-7xl px-4 py-6 flex flex-col h-screen max-h-[1080px]">
+      <main className="w-full max-w-7xl px-2 sm:px-4 py-3 sm:py-6 flex flex-col h-screen max-h-[100dvh]">
         {view === "search" && (
           <SearchView
             onStartBattle={handleStartBattle}

@@ -70,20 +70,20 @@ export const SearchView: React.FC<SearchViewProps> = ({
   };
 
   return (
-    <section className="grow flex flex-col justify-center items-center relative z-10 pb-20">
-      <div className="text-center mb-12 animate-float px-4">
-        <h2 className="text-4xl md:text-6xl font-black mb-4 bg-clip-text text-transparent bg-linear-to-r from-blue-400 to-red-400 drop-shadow-sm">
+    <section className="grow flex flex-col justify-center items-center relative z-10 pb-20 px-4">
+      <div className="text-center mb-8 sm:mb-12 animate-float px-4">
+        <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-3 sm:mb-4 bg-clip-text text-transparent bg-linear-to-r from-blue-400 to-red-400 drop-shadow-sm">
           MERGE CONFLICT
         </h2>
-        <p className="text-gray-400 max-w-lg mx-auto text-lg leading-relaxed">
+        <p className="text-gray-400 max-w-lg mx-auto text-sm sm:text-base md:text-lg leading-relaxed">
           Enter two GitHub usernames. Our algorithm simulates a battle based on
           repositories, commit history, and influence.
         </p>
       </div>
 
-      <div className="w-full max-w-4xl glass-panel p-8 rounded-2xl shadow-2xl relative border border-white/10">
-        <div className="absolute left-1/2 top-2/5 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-black border-2 border-white/10 rounded-full flex items-center justify-center z-20 shadow-xl md:flex">
-          <span className="font-black text-yellow-400 italic text-xl mr-1.5">
+      <div className="w-full max-w-4xl glass-panel p-4 sm:p-6 md:p-8 rounded-2xl shadow-2xl relative border border-white/10">
+        <div className="absolute left-1/2 top-[40%] md:top-2/5 -translate-x-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-black border-2 border-white/10 rounded-full flex items-center justify-center z-20 shadow-xl">
+          <span className="font-black text-yellow-400 italic text-base sm:text-lg md:text-xl mr-1">
             VS
           </span>
         </div>
@@ -103,18 +103,18 @@ export const SearchView: React.FC<SearchViewProps> = ({
                 onChange={(e) => setPlayer1(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleSubmit()}
                 placeholder="torvalds"
-                className="w-full bg-gray-900/50 border border-blue-900/30 rounded-xl p-3 pl-12 pr-12 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-mono text-lg text-white group-hover:border-blue-700/50 shadow-inner"
+                className="w-full bg-gray-900/50 border border-blue-900/30 rounded-xl p-2 sm:p-3 pl-10 sm:pl-12 pr-10 sm:pr-12 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-mono text-sm sm:text-base md:text-lg text-white group-hover:border-blue-700/50 shadow-inner"
               />
-              <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+              <span className="material-symbols-outlined absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-xl">
                 search
               </span>
               {player1 && (
                 <button
                   onClick={() => saveUser(player1)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-400 hover:text-blue-300 transition-colors"
+                  className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 text-blue-400 hover:text-blue-300 transition-colors"
                   title="Save user"
                 >
-                  <span className="material-symbols-outlined text-xl">
+                  <span className="material-symbols-outlined text-lg sm:text-xl">
                     bookmark_add
                   </span>
                 </button>
@@ -136,18 +136,18 @@ export const SearchView: React.FC<SearchViewProps> = ({
                 onChange={(e) => setPlayer2(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleSubmit()}
                 placeholder="gaearon"
-                className="w-full bg-gray-900/50 border border-red-900/30 rounded-xl p-3 pl-12 md:pl-4 md:pr-12 md:text-right focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all font-mono text-lg text-white group-hover:border-red-700/50 shadow-inner"
+                className="w-full bg-gray-900/50 border border-red-900/30 rounded-xl p-2 sm:p-3 pl-10 sm:pl-12 pr-10 sm:pr-12 md:pl-4 md:pr-12 md:text-right focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all font-mono text-sm sm:text-base md:text-lg text-white group-hover:border-red-700/50 shadow-inner"
               />
-              <span className="material-symbols-outlined absolute left-4 md:left-auto md:right-4 top-1/2 -translate-y-1/2 text-gray-500">
+              <span className="material-symbols-outlined absolute left-3 sm:left-4 md:left-auto md:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-xl">
                 search
               </span>
               {player2 && (
                 <button
                   onClick={() => saveUser(player2)}
-                  className="absolute right-3 md:left-3 md:right-auto top-1/2 -translate-y-1/2 text-red-400 hover:text-red-300 transition-colors"
+                  className="absolute right-2 sm:right-3 md:left-3 md:right-auto top-1/2 -translate-y-1/2 text-red-400 hover:text-red-300 transition-colors"
                   title="Save user"
                 >
-                  <span className="material-symbols-outlined text-xl">
+                  <span className="material-symbols-outlined text-lg sm:text-xl">
                     bookmark_add
                   </span>
                 </button>
@@ -157,11 +157,11 @@ export const SearchView: React.FC<SearchViewProps> = ({
         </div>
 
         {/* Action Button */}
-        <div className="mt-8 flex justify-center">
+        <div className="mt-6 sm:mt-8 flex justify-center">
           <button
             onClick={handleSubmit}
             disabled={isLoading || !player1 || !player2}
-            className={`bg-white text-black font-black px-10 py-4 rounded-xl transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center gap-2 text-lg active:scale-95 ${
+            className={`bg-white text-black font-black px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-xl transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center gap-2 text-sm sm:text-base md:text-lg active:scale-95 ${
               isLoading || !player1 || !player2
                 ? "opacity-70 cursor-not-allowed"
                 : "hover:bg-gray-200"
@@ -169,13 +169,17 @@ export const SearchView: React.FC<SearchViewProps> = ({
           >
             {isLoading ? (
               <>
-                <span className="animate-spin material-symbols-outlined">
+                <span className="animate-spin material-symbols-outlined text-lg sm:text-xl">
                   sync
                 </span>
-                FETCHING DATA...
+                <span className="hidden sm:inline">FETCHING DATA...</span>
+                <span className="sm:hidden">LOADING...</span>
               </>
             ) : (
-              "START BATTLE"
+              <>
+                <span className="hidden sm:inline">START BATTLE</span>
+                <span className="sm:hidden">BATTLE</span>
+              </>
             )}
           </button>
         </div>
@@ -249,8 +253,10 @@ export const SearchView: React.FC<SearchViewProps> = ({
       )}
 
       {/* Presets */}
-      <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm font-mono text-gray-500">
-        <span>Quick Match:</span>
+      <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2 sm:gap-4 text-xs sm:text-sm font-mono text-gray-500 px-4">
+        <span className="w-full sm:w-auto text-center sm:text-left">
+          Quick Match:
+        </span>
         <button
           onClick={() => fillInputs("facebook", "google")}
           className="hover:text-white underline decoration-blue-500 decoration-2"

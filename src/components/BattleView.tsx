@@ -29,13 +29,13 @@ export const BattleView: React.FC<BattleViewProps> = ({
   damageNumbers,
 }) => {
   return (
-    <section className="grow flex-col relative h-full min-h-0 flex">
-      <div className="grow grid grid-cols-1 md:grid-cols-12 gap-4 h-full min-h-0 overflow-hidden">
-        <div className="md:col-span-3 flex flex-col gap-4">
+    <section className="grow flex-col relative h-full min-h-0 flex p-2 sm:p-4">
+      <div className="grow grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-4 h-full min-h-0 overflow-hidden">
+        <div className="lg:col-span-3 flex flex-col gap-2 sm:gap-4">
           <PlayerCard player={player1} isShaking={shakingPlayer === "p1"} />
         </div>
 
-        <div className="md:col-span-6 flex flex-col gap-4 min-h-[300px]">
+        <div className="lg:col-span-6 flex flex-col gap-2 sm:gap-4 min-h-[200px] sm:min-h-[300px]">
           <BattleArena
             currentMove={currentMove}
             attackerId={attackerId}
@@ -44,7 +44,7 @@ export const BattleView: React.FC<BattleViewProps> = ({
           <BattleLog logs={logs} />
         </div>
 
-        <div className="md:col-span-3 flex flex-col gap-4">
+        <div className="lg:col-span-3 flex flex-col gap-2 sm:gap-4">
           <PlayerCard player={player2} isShaking={shakingPlayer === "p2"} />
         </div>
       </div>
